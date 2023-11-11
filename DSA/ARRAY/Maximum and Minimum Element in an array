@@ -4,7 +4,7 @@ public:
     int findSum(int A[],int N)
     {
         int minVal = INT_MAX;
-        int maxVal = INT_MIN;
+        int maxVal = A[0];
         int sum=0;
         for(int i=0;i<N;i++)
         {
