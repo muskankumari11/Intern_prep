@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<vector<int>>modifiedMatrix(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == -1) {
+                    int maxInColumn = matrix[0][j];
+                    for (int k = 1; k < m; k++) {
+                        maxInColumn =max(maxInColumn, matrix[k][j]);
+                    }
+                    matrix[i][j] = maxInColumn;
+                }
+            }
+        }
+        return matrix;
+    }
+};
