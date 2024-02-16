@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minTimeToVisitAllPoints(vector<vector<int>>& points) {
+        int sum = 0;
+        for (int i = 1; i < points.size(); i++) {
+            int xi = points[i][0];
+            int yi = points[i][1];
+            int xPrev = points[i - 1][0];
+            int yPrev = points[i - 1][1];
+            sum += max(abs(xi - xPrev), abs(yi - yPrev));
+        }
+        return sum;
+    }
+};
