@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        int n=strs.size();
+        unordered_map<string,vector<string>>angramgroups;
+        for(int i=0;i<n;i++){
+            string sortedstrs=strs[i];
+            sort(sortedstrs.begin(),sortedstrs.end());
+            angramgroups[sortedstrs].push_back(strs[i]);
+        }
+        vector<vector<string>>res;
+        for(auto& group:angramgroups){
+            res.push_back(group.second);
+        }
+        return res;
+    }
+};
