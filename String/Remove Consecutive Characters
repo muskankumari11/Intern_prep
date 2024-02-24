@@ -1,0 +1,15 @@
+//geeksforgeeks
+class Solution {
+public:
+    string removeConsecutiveCharacter(string S) {
+        int N = S.size();
+        string res = "";
+        for (int i = 0; i < N; i++) {
+            char currentChar = S[i];
+            if (currentChar != S[i - 1]) {
+                res += currentChar;
+            }
+        }
+        return res;
+    }
+};
