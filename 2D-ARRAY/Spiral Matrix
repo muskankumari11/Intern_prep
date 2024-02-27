@@ -1,0 +1,40 @@
+//leetcode-medium
+// veryy.... imp*->google,micro(+2times),...
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int row=matrix.size();
+        int col=matrix[0].size();
+        int total=row*col;
+        vector<int>ans;
+        int cnt=0;
+        int strow=0;
+        int stcol=0;
+        int endrow=row-1;
+        int endcol=col-1;
+        while(cnt<total){
+            for(int i=strow; cnt<total && i<=endcol;i++){
+                ans.push_back(matrix[strow][i]);
+                cnt++;
+            }
+            strow++;
+            for(int i=strow; cnt<total && i<=endrow; i++){
+                ans.push_back(matrix[i][endcol]);
+                cnt++;
+            }
+            endcol--;
+            for(int i=endcol; cnt<total && i>=stcol;i--){
+                ans.push_back(matrix[endrow][i]);
+                cnt++;
+            }
+            endrow--;
+            for(int i=endrow; cnt<total && i >= strow;i--){
+                ans.push_back(matrix[i][stcol]);
+                cnt++;
+            }
+            stcol++;
+        }
+        return ans;
+
+    }
+};
