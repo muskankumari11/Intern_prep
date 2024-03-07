@@ -1,0 +1,28 @@
+//gkg
+class Solution {
+public:
+    vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {   
+            map<int, int>mpA;
+            map<int, int>mpB;
+            map<int, int>mpC;
+            vector<int>ans;
+            for(int i=0; i<n1; i++){
+                mpA[A[i]]=1;
+            }
+            for(int i=0; i<n2; i++){
+                mpB[B[i]]=1;
+            }
+            for(int i=0; i<n3; i++){
+                mpC[C[i]]=1;
+            }
+            for(int i=0; i<n2; i++){
+                if(mpA[B[i]]==1 && mpC[B[i]]==1 && mpB[B[i]]){
+                    mpA[B[i]]=0;
+                    ans.push_back(B[i]);
+                }
+            }
+            return ans;
+            
+        }
+};
