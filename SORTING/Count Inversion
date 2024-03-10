@@ -1,0 +1,52 @@
+//GFG->MEDIUM
+//VERY IMP**->FANG
+Class Solution{
+  public:
+    long long int inversionCount(long long arr[], long long N) {
+        vector<long long> temp(N);
+        return mergeSort(arr, temp, 0, N - 1);
+    }
+
+private:
+    long long mergeSort(long long arr[], vector<long long>& temp, long long low, long long high) {
+        long long invCount = 0;
+        if (low < high) {
+            long long mid = low + (high - low) / 2;
+            invCount += mergeSort(arr, temp, low, mid);
+            invCount += mergeSort(arr, temp, mid + 1, high);
+            // Merge 
+            invCount += merge(arr, temp, low, mid, high);
+        }
+        return invCount;
+    }
+
+    long long merge(long long arr[], vector<long long>& temp, long long low, long long mid, long long high) {
+        long long i = low;
+        long long j = mid + 1;
+        long long k = low;
+        long long invCount = 0;
+
+        while (i <= mid && j <= high) {
+            if (arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                invCount += (mid - i + 1);
+                temp[k++] = arr[j++];
+            }
+        }
+
+        while (i <= mid) {
+            temp[k++] = arr[i++];
+        }
+
+        while (j <= high) {
+            temp[k++] = arr[j++];
+        }
+
+        for (i = low; i <= high; i++) {
+            arr[i] = temp[i];
+        }
+
+        return invCount;
+    }
+};
