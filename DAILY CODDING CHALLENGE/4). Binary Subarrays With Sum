@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int sum1=0;
+        int sum2=0;
+        int left1=0;
+        int left2=0;
+        int res=0;
+        for(int i=0;i<nums.size();i++){
+            sum1+=nums[i];
+            while(left1<=i && sum1>=goal){
+            sum1-=nums[left1++];
+        }
+        sum2+=nums[i];
+          while (left2 <= i && sum2 > goal) {
+                sum2 -= nums[left2++];
+            }
+            res+=abs(left2-left1);
+            }
+            return res;
+    }
+};
