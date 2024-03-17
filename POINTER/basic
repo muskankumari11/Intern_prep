@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int arr[4]={1,2,3,4};
+    cout<<"address of first memory block is"<<arr<<endl;
+    cout<<"value at arr[0] is"<<arr[0]<<endl;
+    cout<<"address of first memory block is"<<&arr[0]<<endl;
+    cout<<"4th"<<*arr<<endl;
+
+    return 0;
+}
