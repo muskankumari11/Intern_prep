@@ -1,0 +1,25 @@
+//imp->google,paypal,...
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& points) {
+        int n=points.size();
+        sort(points.begin(),points.end());
+        int cnt=1;
+        vector<int>prev=points[0];
+        for(int i=1;i<n;i++){
+            int currstpoint=points[i][0];
+            int curredpoint=points[i][1];
+            int prevstpoint=prev[0];
+            int prevedpoint=prev[1];
+            if(currstpoint>prevedpoint){
+                cnt++;
+                prev=points[i];
+            }
+            else{
+                prev[0]=max(prevstpoint,currstpoint);
+                prev[1]=min(curredpoint,prevedpoint);
+            }
+        }
+        return cnt;
+    }
+};
