@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+        if (k == 0)
+        return 0;
+        int n = nums.size();
+        int total = 0;
+        int j1 = 0, j2 = 0;
+        unordered_map<int, int> count1, count2;
+        
+        for (int i = 0; i < n; ++i) {
+            count1[nums[i]]++;
+            count2[nums[i]]++;
+            
+            while (count1.size() > k) {
+                if (--count1[nums[j1]] == 0)
+                    count1.erase(nums[j1]);
+                j1++;
+            }
+            
+            while (count2.size() >= k) {
+                if (--count2[nums[j2]] == 0)
+                    count2.erase(nums[j2]);
+                j2++;
+            }
+            
+            total += j2 - j1;
+        }
+        
+        return total;
+    }
+};
