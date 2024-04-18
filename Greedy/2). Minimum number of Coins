@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> minPartition(int N)
+    {
+        int deno[11] = { 2000,500,200,100,50,20,10,5,2,1};
+        vector<int> ans;
+        int i=0;
+        while(N)
+        {
+            if(deno[i]<=N)
+            {
+                ans.push_back(deno[i]);
+                N=N-deno[i];
+            }
+            else{
+                i++;
+            }
+        }
+        return ans;
+    }
+};
