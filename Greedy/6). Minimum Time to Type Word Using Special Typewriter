@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minTimeToType(string word) {
+        int ptr = 0;
+        int cnt = 0;
+        for (int i = 0; i < word.size(); i++) {
+            int ascii = word[i] - 'a';
+            if (ptr == ascii) {
+                cnt++;
+            } else if (ptr < ascii) {
+                int val = min(ascii - ptr, 26 - ascii + ptr);
+                ptr = ascii;
+                cnt += val + 1;
+            } else {
+                int val = min(ptr - ascii, 26 - ptr + ascii);
+                ptr = ascii;
+                cnt += val + 1;
+            }
+        }
+        return cnt;
+    }
+};
