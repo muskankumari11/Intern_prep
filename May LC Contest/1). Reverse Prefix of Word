@@ -1,0 +1,17 @@
+class Solution(object):
+    def reversePrefix(self, word, ch):
+        """
+        :type word: str
+        :type ch: str
+        :rtype: str
+        """
+        i = 0
+        n = len(word)
+        index = word.find(ch)
+        if index != -1:
+            prefix = ""
+            for j in range(index, -1, -1):
+                prefix += word[j]
+            suffix = word[index+1:]
+            return prefix + suffix
+        return word
