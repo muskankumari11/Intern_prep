@@ -1,0 +1,24 @@
+//note->in ques if written 0 to n-1 cities then understand that problm is of graph
+
+class Solution {
+public:
+    long long maximumImportance(int n, vector<vector<int>>& roads) {
+        long long sum=0;
+        vector<int>degree(n,0);
+        for(auto &vec:roads){
+            int u=vec[0];
+            int v=vec[1];
+            degree[u]++;
+            degree[v]++;
+        }
+        //sort degree in asending order
+        sort(degree.begin(),degree.end());
+        long long value=1;
+        
+        for(int i=0;i<n;i++){
+            sum+=(degree[i]*value);
+            value++;
+        }
+        return sum;
+    }
+};
