@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int minimumDeletions(string s) {
+        int deletion = 0;
+        int bcnt = 0;
+
+        for (char c : s) {
+            if (c == 'b') {
+                bcnt++;
+            } else if (c == 'a') {
+                if (bcnt > 0) {
+                    deletion++;
+                    bcnt--;
+                }
+            }
+        }
+
+        return deletion;
+    }
+};
