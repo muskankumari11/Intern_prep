@@ -1,0 +1,53 @@
+class Solution {
+public:
+    std::string fractionAddition(std::string expression) {
+        int nume = 0;  
+        int deno = 1;  
+
+        int i = 0;
+        int n = expression.length();
+        
+        while (i < n) {
+
+            int sign = 1;
+            if (expression[i] == '-' || expression[i] == '+') {
+                sign = (expression[i] == '-') ? -1 : 1;
+                i++;
+            }
+
+            int currNume = 0;
+            while (i < n && isdigit(expression[i])) {
+                currNume = currNume * 10 + (expression[i] - '0');
+                i++;
+            }
+
+            // Skip the '/' character
+            i++;
+
+            // Parse the denominator
+            int currDeno = 0;
+            while (i < n && isdigit(expression[i])) {
+                currDeno = currDeno * 10 + (expression[i] - '0');
+                i++;
+            }
+
+            // Adjust the numerator with the sign
+            currNume *= sign;
+
+            nume = nume * currDeno + currNume * deno;
+            deno = deno * currDeno;
+
+
+            int gcd = std::gcd(abs(nume), abs(deno));
+            nume /= gcd;
+            deno /= gcd;
+        }
+
+        if (deno < 0) {
+            nume = -nume;
+            deno = -deno;
+        }
+
+        return std::to_string(nume) + "/" + std::to_string(deno);
+    }
+};
